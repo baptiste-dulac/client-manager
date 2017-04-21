@@ -1,0 +1,33 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #ecf0f1;
+  height: 100%; }
+
+h1 {
+  color: #7f8c8d;
+  font-size: 1.8em;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 10px 0; }
+
+#container {
+  min-height: 100%;
+  position: relative; }
+
+#page {
+  padding-bottom: 30px; }
+
+nav {
+  background-color: #3498db; }
+
+footer {
+  padding: 0;
+  background: #34495e;
+  color: #ecf0f1;
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
+  footer p {
+    margin: 0;
+    padding: 5px 0; }

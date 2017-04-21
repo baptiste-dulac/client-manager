@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}" />
+{% endblock %}
+
+{% block title %}{{ 'cm.login'|trans }}{% endblock %}
+
+{% block body %}
+    <div id="login">
+        <h1 id="title">{{ 'cm.site_title'|trans }}</h1>
+        {{ include('@FOSUser/Security/login_content.html.twig') }}
+    </div>
+{% endblock %}

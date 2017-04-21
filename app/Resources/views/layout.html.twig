@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ 'cm.site_title'|trans }} - {% block title %}{{ 'cm.homepage'|trans }}{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+</head>
+<body>
+
+<div id="container">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">{{ 'cm.site_title'|trans }}</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#">{{ 'cm.clients'|trans }}</a></li>
+                <li><a href="#">{{ 'cm.projects'|trans }}</a></li>
+                <li><a href="#">{{ 'cm.quotes'|trans }}</a></li>
+                <li><a href="#">{{ 'cm.billing'|trans }}</a></li>
+                <li><a href="#">{{ 'cm.calendar'|trans }}</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" id="page">
+        {% block body %}{% endblock %}
+    </div>
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2017 - Made with  <i class="tiny red-text material-icons">favorite</i> by <a href="https://www.baptistedulac.me">Baptiste Dulac</a>
+            </p>
+        </div>
+    </footer>
+</div>
+
+
+{% block javascripts %}{% endblock %}
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+</body>
+</html>
+

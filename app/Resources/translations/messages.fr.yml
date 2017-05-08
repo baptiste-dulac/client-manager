@@ -7,3 +7,15 @@ cm:
   billing: Facturation
   quotes: Devis
   calendar: Calendrier
+  submit: Envoyer
+  new: Nouveau
+  edit: Modifier
+  id: Identifiant
+  name: Nom
+  actions: Actions
+
+  dashboard:
+    current_projects: Projets en cours
+    current_tasks: Tâches en cours
+    summary: Résumé
+    last_invoices: Dernières factures

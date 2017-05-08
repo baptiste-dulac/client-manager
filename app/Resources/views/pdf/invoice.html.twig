@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        #logo {
+            width: 200px;
+        }
+        h1 {
+            margin: 0;
+            padding: 0 0 10px 0;
+            font-size: 1.8em;
+        }
+        h1 small {
+            display: block;
+            font-size: 0.7em;
+            font-weight: bold;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table#details {
+            margin: 50px 0
+        }
+        table tr {
+            vertical-align: top;
+        }
+        table tr td.right {
+            text-align: right;
+        }
+        td, th {
+            padding: 5px;
+        }
+        table.celled td,  table.celled th {
+            border: 1px solid #444;
+        }
+        .divider {
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<table id="details">
+    <tr>
+        <td>
+            <img src="{{ absolute_url(asset('assets/img/logo.png')) }}" id="logo">
+        </td>
+        <td>
+            <h1>Baptiste Dulac</h1>
+            <p>
+                5 rue de Tanger<br/>
+                75019 Paris<br/>
+                Tél. : 06 50 18 28 81<br/>
+                Email : dulacbaptiste@gmail.com<br/>
+            </p>
+            <p>
+                Auto-Entrepreneur<br/>
+                SIRET : 75264055700019
+            </p>
+        </td>
+        <td class="right">
+            {% set client = invoice.client %}
+            <h1>{{ client.name }}</h1>
+            <p>
+                {{ client.addressLine1 }}<br/>
+                {{ client.addressLine2 }}<br/>
+                {{ client.zipCode }} {{ client.city }}<br/>
+            </p>
+            <p>
+                SIRET : {{ client.registrationNumber }}
+            </p>
+        </td>
+    </tr>
+</table>
+
+<div class="divider"></div>
+
+<h1>Facture n°{{ invoice.code }}<small>{{ invoice.createdAt|date('d/m/Y') }}</small></h1>
+<strong>Identifiant interne projet : {{ invoice.project.code }}</strong>
+<div class="divider"></div>
+
+<table class="celled">
+    <tr>
+        <th>Désignation</th><th>Prix unitaire</th><th>Quantité</th><th>Total</th>
+    </tr>
+    <tr>
+        <td>{{ invoice.details|nl2br }}</td>
+        <td class="right">{{ invoice.amount|price }}</td>
+        <td class="right">1</td>
+        <td class="right">{{ invoice.amount|price }}</td>
+    </tr>
+    <tr>
+        <td colspan="3" class="right"><strong>TOTAL</strong></td>
+        <td class="right"><strong>{{ invoice.amount|price }}</strong></td>
+    </tr>
+</table>
+<div class="divider"></div>
+<hr>
+<p>
+    <em>TVA non applicable, art. 293B du CGI</em>
+</p>
+
+</body>
+</html>

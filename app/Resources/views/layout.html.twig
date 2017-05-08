@@ -14,15 +14,17 @@
 
 <div id="container">
     <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo">{{ 'cm.site_title'|trans }}</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">{{ 'cm.clients'|trans }}</a></li>
-                <li><a href="#">{{ 'cm.projects'|trans }}</a></li>
-                <li><a href="#">{{ 'cm.quotes'|trans }}</a></li>
-                <li><a href="#">{{ 'cm.billing'|trans }}</a></li>
-                <li><a href="#">{{ 'cm.calendar'|trans }}</a></li>
-            </ul>
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">{{ 'cm.site_title'|trans }}</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="{{ path('app_client_index') }}">{{ 'cm.clients'|trans }}</a></li>
+                    <li><a href="#">{{ 'cm.projects'|trans }}</a></li>
+                    <li><a href="#">{{ 'cm.quotes'|trans }}</a></li>
+                    <li><a href="#">{{ 'cm.billing'|trans }}</a></li>
+                    <li><a href="#">{{ 'cm.calendar'|trans }}</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
     <div class="container" id="page">
@@ -40,7 +42,13 @@
 
 {% block javascripts %}{% endblock %}
 <!-- Compiled and minified JavaScript -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>
 </body>
 </html>
 

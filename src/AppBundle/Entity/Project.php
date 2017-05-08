@@ -3,14 +3,18 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Traits\DatedTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Index;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Project
  * @package AppBundle\Entity
- * @ORM\Table(name="cm_projects")
- * @ORM\Entity()
+ * @ORM\Table(name="cm_projects", indexes={
+ *     @Index(name="DATES_IDX", columns={"starts_at", "ends_at"})
+ *     })
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Project
@@ -41,15 +45,37 @@ class Project
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="starts_at", type="datetime")
+     * @ORM\Column(name="starts_at", type="datetime", nullable=true)
      */
     protected $startsAt;
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="ends_at", type="datetime")
+     * @ORM\Column(name="ends_at", type="datetime", nullable=true)
      */
     protected $endsAt;
+
+    /**
+     * @var float
+     * @ORM\Column(name="budget", type="float")
+     */
+    protected $budget;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Invoice", mappedBy="project", orphanRemoval=true, cascade={"persist"})
+     */
+    protected $invoices;
+
+    public function __construct()
+    {
+        $this->invoices = new ArrayCollection();
+    }
+
+    public function getCode()
+    {
+        return sprintf('P-%03d', $this->getId());
+    }
 
     /**
      * @return int

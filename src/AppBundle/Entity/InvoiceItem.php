@@ -35,7 +35,7 @@ class InvoiceItem
 
     /**
      * @var Invoice
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Invoice", inversedBy="invoices")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Invoice", inversedBy="invoiceItems")
      * @ORM\JoinColumn(name="invoice_id", onDelete="SET NULL")
      */
     protected $invoice;

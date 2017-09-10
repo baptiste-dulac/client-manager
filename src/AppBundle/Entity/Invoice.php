@@ -47,7 +47,7 @@ class Invoice
 
     /**
      * @var Project
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="invoices",cascade={"persist"})
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $project;

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Traits\DatedTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +57,17 @@ class Invoice
      * @ORM\Column(name="details", type="text")
      */
     protected $details;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\InvoiceItem", mappedBy="invoice")
+     */
+    protected $invoiceItems;
+
+    public function __construct()
+    {
+        $this->invoiceItems = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -159,5 +171,21 @@ class Invoice
     public function setDetails($details)
     {
         $this->details = $details;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getInvoiceItems()
+    {
+        return $this->invoiceItems;
+    }
+
+    /**
+     * @param ArrayCollection $invoiceItems
+     */
+    public function setInvoiceItems($invoiceItems)
+    {
+        $this->invoiceItems = $invoiceItems;
     }
 }

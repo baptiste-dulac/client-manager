@@ -88,12 +88,14 @@
     <tr>
         <th>Désignation</th><th>Prix unitaire</th><th>Quantité</th><th>Total</th>
     </tr>
-    <tr>
-        <td>{{ invoice.details|nl2br }}</td>
-        <td class="right">{{ invoice.amount|price }}</td>
-        <td class="right">1</td>
-        <td class="right">{{ invoice.amount|price }}</td>
-    </tr>
+    {% for item in invoice.invoiceItems %}
+        <tr>
+            <td>{{ item.details|nl2br }}</td>
+            <td class="right">{{ item.amount|price }}</td>
+            <td class="right">1</td>
+            <td class="right">{{ item.amount|price }}</td>
+        </tr>
+    {% endfor %}
     <tr>
         <td colspan="3" class="right"><strong>TOTAL</strong></td>
         <td class="right"><strong>{{ invoice.amount|price }}</strong></td>

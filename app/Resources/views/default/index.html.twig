@@ -9,12 +9,22 @@
             <div class="card white">
                 <div class="card-content">
                     <span class="card-title">{{ 'cm.dashboard.current_projects'|trans }}</span>
-                    <table class="bordered">
+                    <table>
+                        <tr>
+                            <th>{{ 'cm.name'|trans }}</th>
+                            <th>{{ 'cm.endsAt'|trans }}</th>
+                            <th></th>
+                        </tr>
                         {% for project in projects %}
                             <tr>
-                                <td>{{ project.endsAt|date('d/m/Y') }}</td>
                                 <td>{{ project.name }}</td>
+                                <td>{{ project.endsAt|date('M d Y') }}</td>
+                                <td>
+                                    <a href="{{ path('app_project_edit', {id: project.id}) }}"><i class="material-icons">edit</i></a>
+                                </td>
                             </tr>
+                            {% else %}
+                            <tr><td colspan="3"><em>{{ 'cm.no_project'|trans }}</em></td></tr>
                         {% endfor %}
                     </table>
                 </div>

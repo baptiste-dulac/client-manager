@@ -15,8 +15,8 @@
             <tr>
                 <td>{{ project.name }}</td>
                 <td>{{ project.client }}</td>
-                <td>{{ project.startsAt|date }}</td>
-                <td>{{ project.endsAt|date }}</td>
+                <td>{{ project.startsAt|date('M d Y') }}</td>
+                <td>{{ project.endsAt|date('M d Y') }}</td>
                 <td>
                     <a href="{{ path('app_project_edit', {id: project.id}) }}" class="waves-effect waves-light btn">{{ 'cm.edit'|trans }}</a>
                 </td>

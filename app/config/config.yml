@@ -89,10 +89,6 @@ fos_user:
 
 knp_snappy:
     pdf:
-        enabled:    true
-        binary:      "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" #/usr/local/bin/wkhtmltopdf
-        options:    []
-    image:
-        enabled:    true
-        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\"" #/usr/local/bin/wkhtmltoimage
-        options:    []
+        enabled: true
+        binary: '%app.wkhtmltopdf%'
+        options: []

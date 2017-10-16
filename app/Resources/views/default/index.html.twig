@@ -4,8 +4,8 @@
     <h1>Dashboard</h1>
 
     <div class="row">
+        <div class="col l12 xl6">
 
-        <div class="col l12 xl4">
             <div class="card white">
                 <div class="card-content">
                     <span class="card-title">{{ 'cm.dashboard.current_projects'|trans }}</span>
@@ -19,29 +19,7 @@
                     </table>
                 </div>
             </div>
-        </div>
 
-        <div class="col l12 xl4">
-            <div class="card white">
-                <div class="card-content">
-                    <span class="card-title">{{ 'cm.dashboard.current_tasks'|trans }}</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="col l12 xl4">
-            <div class="card white">
-                <div class="card-content">
-                    <span class="card-title">{{ 'cm.dashboard.summary'|trans }}</span>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row">
-
-        <div class="col l12 xl6">
             <div class="card white">
                 <div class="card-content">
                     <span class="card-title">{{ 'cm.dashboard.last_invoices'|trans }}</span>
@@ -53,6 +31,7 @@
                                 <td>{{ invoice.project.name }}</td>
                                 <td>
                                     <i class="material-icons{% if invoice.paid %} green-text{% else %} red-text{% endif %}">{% if invoice.paid %}done{% else %}clear{% endif %}</i>
+                                    <a href="{{ path('app_invoice_edit', {id: invoice.id}) }}"><i class="material-icons black-text">edit</i></a>
                                     <a href="{{ path('app_invoice_download', {id: invoice.id}) }}"><i class="material-icons black-text">file_download</i></a>
                                 </td>
                             </tr>
@@ -61,7 +40,52 @@
                 </div>
             </div>
         </div>
+        <div class="col l12 xl6">
+            <div class="card white">
+                <div class="card-content">
+                    <span class="card-title">{{ 'cm.dashboard.summary'|trans }} <span class="right">{{ 'now'|date('M Y') }}</span></span>
+                    <table>
+                        <tr>
+                            <th>{{ 'cm.invoice_paid'|trans }}</th><td> {{ sum.month.paid }}€</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'cm.invoice_not_paid'|trans }}</th><td>{{ sum.month.not_paid }}€</td>
+                        </tr>
+                    </table>
+                    <span class="card-title">{{ 'cm.dashboard.summary'|trans }} <span class="right">{{ 'now'|date('Y') }}</span></span>
+                    <table>
+                        <tr>
+                            <th>{{ 'cm.invoice_paid'|trans }}</th><td> {{ sum.year.paid }}€</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'cm.invoice_not_paid'|trans }}</th><td>{{ sum.year.not_paid }}€</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card white">
+                <div class="card-content">
+                    <span class="card-title">{{ 'cm.history'|trans }}</span>
+                    <div id="summary-chart"></div>
+                </div>
+            </div>
 
+        </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        {% spaceless %}
+        var data = {
+            labels: [{% for l in charts.summary.labels %}'{{ l|e('js') }}'{% if not loop.last %},{% endif %}{% endfor %}],
+            series: [{% for s in charts.summary.series %}[{% for d in s %}{{ d|e('js') }}{% if not loop.last %},{% endif %}{% endfor %}]{% if not loop.last %},{% endif %}{% endfor %}]
+        };
+        {% endspaceless %}
+        var options = {
+            height: 400
+        };
+        new Chartist.Bar('#summary-chart', data, options);
+    </script>
 {% endblock %}

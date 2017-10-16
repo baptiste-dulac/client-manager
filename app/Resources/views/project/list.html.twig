@@ -2,8 +2,7 @@
 
 
 {% block body %}
-    <h1>{{ 'cm.projects'|trans }}</h1>
-    <a href="{{ path('app_project_add') }}" class="waves-effect waves-light btn">{{ 'cm.new'|trans }}</a>
+    <h1>{{ 'cm.projects'|trans }}<a href="{{ path('app_project_add') }}" class="waves-effect waves-light btn right">{{ 'cm.new'|trans }}</a></h1>
     <table class="striped">
         <tr>
             <th>{{ 'cm.name'|trans }}</th>

@@ -53,12 +53,12 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("", name="app_client_index")
+     * @Route("", name="app_client_list")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function listAction()
     {
-        return $this->render(':client:index.html.twig', [
+        return $this->render(':client:list.html.twig', [
             'clients' => $this->getDoctrine()->getRepository('AppBundle:Client')->findAll()
         ]);
     }

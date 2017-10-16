@@ -7,6 +7,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 </head>
@@ -18,7 +19,7 @@
             <div class="nav-wrapper">
                 <a href="{{ path('homepage') }}" class="brand-logo">{{ 'cm.site_title'|trans }}</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{ path('app_client_index') }}">{{ 'cm.clients'|trans }}</a></li>
+                    <li><a href="{{ path('app_client_list') }}">{{ 'cm.clients'|trans }}</a></li>
                     <li><a href="{{ path('app_project_list') }}">{{ 'cm.projects'|trans }}</a></li>
                     {#<li><a href="#">{{ 'cm.quotes'|trans }}</a></li>#}
                     <li><a href="{{ path('app_invoice_list') }}">{{ 'cm.billing'|trans }}</a></li>
@@ -43,6 +44,7 @@
 <!-- Compiled and minified JavaScript -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 <script>
     $(document).ready(function() {
         $('select').material_select();

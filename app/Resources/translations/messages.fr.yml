@@ -22,6 +22,10 @@ cm:
   id: Identifiant
   name: Nom
   actions: Actions
+  paid: Payé
+  invoice_paid: Facture payée
+  invoice_not_paid: Facture en attente
+  history: Historique
 
   dashboard:
     current_projects: Projets en cours

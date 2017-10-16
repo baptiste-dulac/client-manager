@@ -3,8 +3,7 @@
 
 {% block body %}
 
-    <h1>{{ 'cm.clients'|trans }}</h1>
-    <a href="{{ path('app_client_new') }}" class="waves-effect waves-light btn">{{ 'cm.new'|trans }}</a>
+    <h1>{{ 'cm.clients'|trans }}<a href="{{ path('app_client_new') }}" class="waves-effect waves-light btn right">{{ 'cm.new'|trans }}</a></h1>
     <table class="striped">
         <tr>
             <th>{{ 'cm.id'|trans }}</th>

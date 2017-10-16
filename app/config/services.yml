@@ -9,3 +9,8 @@ services:
     public: false
     tags:
       - { name: twig.extension }
+
+  cm.chart_service:
+    class: AppBundle\Service\ChartService
+    public: true
+    arguments: ['@doctrine.orm.entity_manager']

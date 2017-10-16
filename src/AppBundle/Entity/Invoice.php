@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Invoice
  * @package AppBundle\Entity
  * @ORM\Table(name="cm_invoices")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InvoiceRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Invoice

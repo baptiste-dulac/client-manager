@@ -3,8 +3,17 @@ cm:
   homepage: Page d'accueil
   login: Connexion
   clients: Clients
+  client: Client
+  startsAt: Démarre le
+  endsAt: Finis le
   projects: Projets
+  project: Projet
+  amount: Montant
+  download: Télécharger
   billing: Facturation
+  invoice: Facture
+  code: Code
+  created_at: Créé le
   quotes: Devis
   calendar: Calendrier
   submit: Envoyer

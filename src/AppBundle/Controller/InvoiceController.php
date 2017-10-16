@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Invoice;
+use AppBundle\Form\InvoiceType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,6 +16,44 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class InvoiceController extends Controller
 {
+
+    /**
+     * @Route("", name="app_invoice_list")
+     */
+    public function listAction()
+    {
+        return $this->render(':invoice:list.html.twig', [
+           'invoices' => $this->getDoctrine()->getRepository('AppBundle:Invoice')->findAll()
+        ]);
+    }
+
+    /**
+     * @Route("/add", name="app_invoice_add")
+     * @Route("/{id}", name="app_invoice_edit", requirements={"id": "\d+"})
+     * @param Request $request
+     * @param Invoice|null $invoice
+     * @return Response
+     */
+    public function addAction(Request $request, Invoice $invoice = null)
+    {
+        $form = $this->createForm(InvoiceType::class, $invoice);
+        if ($request->isMethod('POST'))
+        {
+            $form->handleRequest($request);
+            if ($form->isValid() && $form->isSubmitted())
+            {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($form->getData());
+                $em->flush();
+                return $this->redirectToRoute('app_invoice_list');
+            }
+        }
+
+        return $this->render(':invoice:add.html.twig', [
+            'invoice' => $invoice,
+            'form' => $form->createView()
+        ]);
+    }
 
     /**
      * @Route("/download/{id}", name="app_invoice_download")

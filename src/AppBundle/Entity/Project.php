@@ -72,6 +72,11 @@ class Project
         $this->invoices = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     public function getCode()
     {
         return sprintf('P-%03d', $this->getId());
@@ -155,5 +160,37 @@ class Project
     public function setEndsAt($endsAt)
     {
         $this->endsAt = $endsAt;
+    }
+
+    /**
+     * @return float
+     */
+    public function getBudget()
+    {
+        return $this->budget;
+    }
+
+    /**
+     * @param float $budget
+     */
+    public function setBudget($budget)
+    {
+        $this->budget = $budget;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getInvoices()
+    {
+        return $this->invoices;
+    }
+
+    /**
+     * @param ArrayCollection $invoices
+     */
+    public function setInvoices($invoices)
+    {
+        $this->invoices = $invoices;
     }
 }

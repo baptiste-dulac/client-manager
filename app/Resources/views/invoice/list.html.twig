@@ -1,0 +1,27 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'cm.billing'|trans }}</h1>
+    <a href="{{ path('app_invoice_add') }}" class="waves-effect waves-light btn">{{ 'cm.new'|trans }}</a>
+    <table class="striped">
+        <tr>
+            <th>{{ 'cm.code'|trans }}</th>
+            <th>{{ 'cm.created_at'|trans }}</th>
+            <th>{{ 'cm.project'|trans }}</th>
+            <th>{{ 'cm.amount'|trans }}</th>
+            <th>{{ 'cm.actions'|trans }}</th>
+        </tr>
+        {% for invoice in invoices %}
+            <tr>
+                <td>{{ invoice.code }}</td>
+                <td>{{ invoice.createdAt|date }}</td>
+                <td>{{ invoice.project }}</td>
+                <td>{{ invoice.amount }} €</td>
+                <td>
+                    <a href="{{ path('app_invoice_edit', {id: invoice.id}) }}" class="waves-effect waves-light btn">{{ 'cm.edit'|trans }}</a>
+                    <a href="{{ path('app_invoice_download', {id: invoice.id}) }}" class="waves-effect waves-light btn">{{ 'cm.download'|trans }}</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

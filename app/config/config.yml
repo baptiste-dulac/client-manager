@@ -38,6 +38,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - ':forms:materializecss.html.twig'
 
 # Doctrine Configuration
 doctrine:

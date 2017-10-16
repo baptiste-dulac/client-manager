@@ -60,7 +60,7 @@ class Invoice
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\InvoiceItem", mappedBy="invoice")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\InvoiceItem", mappedBy="invoice", cascade={"persist"})
      */
     protected $invoiceItems;
 
@@ -187,5 +187,29 @@ class Invoice
     public function setInvoiceItems($invoiceItems)
     {
         $this->invoiceItems = $invoiceItems;
+    }
+
+    /**
+     * @param InvoiceItem $invoiceItem
+     */
+    public function addInvoiceItem(InvoiceItem $invoiceItem)
+    {
+        if (!$this->invoiceItems->contains($invoiceItem))
+        {
+            $this->invoiceItems->add($invoiceItem);
+            $invoiceItem->setInvoice($this);
+        }
+    }
+
+    /**
+     * @param InvoiceItem $invoiceItem
+     */
+    public function removeInvoiceItem(InvoiceItem $invoiceItem)
+    {
+        if ($this->invoiceItems->contains($invoiceItem))
+        {
+            $this->invoiceItems->removeElement($invoiceItem);
+            $invoiceItem->setInvoice(null);
+        }
     }
 }

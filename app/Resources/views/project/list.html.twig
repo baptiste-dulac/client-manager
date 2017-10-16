@@ -1,0 +1,27 @@
+{% extends '::layout.html.twig' %}
+
+
+{% block body %}
+    <h1>{{ 'cm.projects'|trans }}</h1>
+    <a href="{{ path('app_project_add') }}" class="waves-effect waves-light btn">{{ 'cm.new'|trans }}</a>
+    <table class="striped">
+        <tr>
+            <th>{{ 'cm.name'|trans }}</th>
+            <th>{{ 'cm.client'|trans }}</th>
+            <th>{{ 'cm.startsAt'|trans }}</th>
+            <th>{{ 'cm.endsAt'|trans }}</th>
+            <th>{{ 'cm.actions'|trans }}</th>
+        </tr>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.name }}</td>
+                <td>{{ project.client }}</td>
+                <td>{{ project.startsAt|date }}</td>
+                <td>{{ project.endsAt|date }}</td>
+                <td>
+                    <a href="{{ path('app_project_edit', {id: project.id}) }}" class="waves-effect waves-light btn">{{ 'cm.edit'|trans }}</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

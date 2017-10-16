@@ -61,6 +61,14 @@ class Client
     }
 
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
      * @return int
      */
     public function getId()
@@ -125,7 +133,7 @@ class Client
     }
 
     /**
-     * @return ArrayCollection
+     * @return User
      */
     public function getUser()
     {
@@ -133,7 +141,7 @@ class Client
     }
 
     /**
-     * @param ArrayCollection $user
+     * @param User $user
      */
     public function setUser($user)
     {

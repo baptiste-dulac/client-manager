@@ -43,7 +43,7 @@ class ClientController extends Controller
                 $em->flush();
 
                 $this->addFlash('success', 'cm.message.new_entity_success');
-                return $this->redirectToRoute('app_client_index');
+                return $this->redirectToRoute('app_client_list');
             }
         }
         return $this->render(':client:new.html.twig', [
@@ -59,7 +59,7 @@ class ClientController extends Controller
     public function listAction()
     {
         return $this->render(':client:list.html.twig', [
-            'clients' => $this->getDoctrine()->getRepository('AppBundle:Client')->findAll()
+            'clients' => $this->getDoctrine()->getRepository('AppBundle:Client')->findBy([], ['createdAt' => 'DESC'])
         ]);
     }
 

@@ -23,7 +23,7 @@ class InvoiceController extends Controller
     public function listAction()
     {
         return $this->render(':invoice:list.html.twig', [
-           'invoices' => $this->getDoctrine()->getRepository('AppBundle:Invoice')->findAll()
+           'invoices' => $this->getDoctrine()->getRepository('AppBundle:Invoice')->findBy([], ['createdAt' => 'DESC']),
         ]);
     }
 

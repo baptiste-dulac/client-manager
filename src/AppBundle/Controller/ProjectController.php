@@ -52,7 +52,7 @@ class ProjectController extends Controller
     public function indexAction()
     {
         return $this->render(':project:list.html.twig', [
-            'projects' => $this->getDoctrine()->getRepository('AppBundle:Project')->findAll(),
+            'projects' => $this->getDoctrine()->getRepository('AppBundle:Project')->findBy([], ['createdAt' => 'DESC']),
         ]);
     }
 

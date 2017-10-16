@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,6 +23,11 @@ class InvoiceType extends AbstractType
             ->add('project')
             ->add('amount')
             ->add('details')
+            ->add('createdAt', DateType::class,[
+                'html5' => true,
+                'format' => 'yyyy-MM-dd',
+                'widget' => 'single_text'
+            ])
             ->add('invoiceItems', CollectionType::class, [
                 'entry_type' => InvoiceItemType::class,
                 'allow_add' => true,

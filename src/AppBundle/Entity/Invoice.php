@@ -27,6 +27,12 @@ class Invoice
     protected $id;
 
     /**
+     * @var string
+     * @ORM\Column(name="code")
+     */
+    protected $code;
+
+    /**
      * @var float
      * @ORM\Column(name="amount", type="float")
      */
@@ -70,6 +76,16 @@ class Invoice
     }
 
     /**
+     * @ORM\PreUpdate()
+     * @ORM\PrePersist()
+     */
+    public function initCode()
+    {
+        if (!$this->code)
+            $this->code = sprintf('F-DULAC-%s-%03d', $this->createdAt->format('Ym'), $this->getId());
+    }
+
+    /**
      * @return int
      */
     public function getId()
@@ -78,11 +94,19 @@ class Invoice
     }
 
     /**
+     * @param string $code
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    }
+
+    /**
      * @return string
      */
     public function getCode()
     {
-        return sprintf('F-DULAC-%s-%03d', $this->createdAt->format('Ym'), $this->getId());
+        return $this->code;
     }
 
     /**

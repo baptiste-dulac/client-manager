@@ -14,7 +14,7 @@
         {% for invoice in invoices %}
             <tr>
                 <td>{{ invoice.code }}</td>
-                <td>{{ invoice.createdAt|date }}</td>
+                <td>{{ invoice.createdAt|date('M d Y') }}</td>
                 <td>{{ invoice.project }}</td>
                 <td>{% if invoice.paid %}<span class="material-icons green-text">done</span>{% else %}<span class="material-icons red-text">clear</span>{% endif %}</td>
                 <td>{{ invoice.amount|number_format(2, ',', '.') }} }} €</td>

@@ -3,20 +3,22 @@
 {% block body %}
     <h1>{{ 'cm.invoice'|trans }}</h1>
     <form action="{{ invoice ? path('app_invoice_edit', {id: invoice.id}) : path('app_invoice_add') }}" method="POST">
-    <div class="row">
-        <div class="col s12 m6">
+        <div class="row">
+            <div class="col s12 m6">
                 {{ form_row(form.client) }}
+                {{ form_row(form.code) }}
                 {{ form_row(form.project) }}
+                {{ form_row(form.createdAt) }}
                 {{ form_row(form.paid) }}
                 {{ form_row(form.details) }}
                 {{ form_row(form.amount) }}
+            </div>
+            <div class="col s12 m6">
+                <a href="#" class="waves-effect waves-light btn right" id="add-invoice-item-button">{{ 'cm.new_invoice_item'|trans }}</a>
+                {{ form_row(form.invoiceItems) }}
+                {{ form_row(form._token) }}
+            </div>
         </div>
-        <div class="col s12 m6">
-            <a href="#" class="waves-effect waves-light btn right" id="add-invoice-item-button">{{ 'cm.new_invoice_item'|trans }}</a>
-            {{ form_row(form.invoiceItems) }}
-            {{ form_row(form._token) }}
-        </div>
-    </div>
         <button class="waves-effect waves-light btn right">{{ 'cm.submit'|trans }}</button>
     </form>
 {% endblock %}

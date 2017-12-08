@@ -8,6 +8,7 @@ cm:
   endsAt: Finis le
   projects: Projets
   project: Projet
+  no_project: Aucun projet
   amount: Montant
   download: Télécharger
   billing: Facturation

@@ -27,6 +27,7 @@ cm:
   invoice_not_paid: Facture en attente
   new_invoice_item: Nouvelle ligne
   history: Historique
+  budget: Budget
 
   dashboard:
     current_projects: Projets en cours

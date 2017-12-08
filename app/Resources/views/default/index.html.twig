@@ -43,22 +43,24 @@
         <div class="col l12 xl6">
             <div class="card white">
                 <div class="card-content">
-                    <span class="card-title">{{ 'cm.dashboard.summary'|trans }} <span class="right">{{ 'now'|date('M Y') }}</span></span>
                     <table>
                         <tr>
-                            <th>{{ 'cm.invoice_paid'|trans }}</th><td> {{ sum.month.paid }}€</td>
+                            <th colspan="2"><span class="card-title">{{ 'cm.dashboard.summary'|trans }} <span class="right">{{ 'now'|date('M Y') }}</span></span></th>
                         </tr>
                         <tr>
-                            <th>{{ 'cm.invoice_not_paid'|trans }}</th><td>{{ sum.month.not_paid }}€</td>
-                        </tr>
-                    </table>
-                    <span class="card-title">{{ 'cm.dashboard.summary'|trans }} <span class="right">{{ 'now'|date('Y') }}</span></span>
-                    <table>
-                        <tr>
-                            <th>{{ 'cm.invoice_paid'|trans }}</th><td> {{ sum.year.paid }}€</td>
+                            <th>{{ 'cm.invoice_paid'|trans }}</th><td>{{ sum.month.paid|number_format(2, ',', '.') }} }} €</td>
                         </tr>
                         <tr>
-                            <th>{{ 'cm.invoice_not_paid'|trans }}</th><td>{{ sum.year.not_paid }}€</td>
+                            <th>{{ 'cm.invoice_not_paid'|trans }}</th><td>{{ sum.month.not_paid|number_format(2, ',', '.') }} }} €</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2"><span class="card-title">{{ 'cm.dashboard.summary'|trans }} <span class="right">{{ 'now'|date('Y') }}</span></span></th>
+                        </tr>
+                        <tr>
+                            <th>{{ 'cm.invoice_paid'|trans }}</th><td>{{ sum.year.paid|number_format(2, ',', '.') }} }} €</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'cm.invoice_not_paid'|trans }}</th><td>{{ sum.year.not_paid|number_format(2, ',', '.') }} }} €</td>
                         </tr>
                     </table>
                 </div>

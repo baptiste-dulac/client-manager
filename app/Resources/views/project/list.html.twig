@@ -16,7 +16,7 @@
             <tr>
                 <td>{{ project.name }}</td>
                 <td>{{ project.client }}</td>
-                <td>{{ project.budget|number_format(2, ',', '.') }} €</td>
+                <td>{{ project.budget|number_format(2, '.', ' ') }} €</td>
                 <td>{{ project.startsAt|date('M d Y') }}</td>
                 <td>{{ project.endsAt|date('M d Y') }}</td>
                 <td>

@@ -17,7 +17,7 @@
                 <td>{{ invoice.createdAt|date('M d Y') }}</td>
                 <td>{{ invoice.project }}</td>
                 <td>{% if invoice.paid %}<span class="material-icons green-text">done</span>{% else %}<span class="material-icons red-text">clear</span>{% endif %}</td>
-                <td>{{ invoice.amount|number_format(2, ',', '.') }} }} €</td>
+                <td>{{ invoice.amount|number_format(2, '.', ' ') }} €</td>
                 <td>
                     <a href="{{ path('app_invoice_edit', {id: invoice.id}) }}" class="waves-effect waves-light btn">{{ 'cm.edit'|trans }}</a>
                     <a href="{{ path('app_invoice_download', {id: invoice.id}) }}" class="waves-effect waves-light btn">{{ 'cm.download'|trans }}</a>

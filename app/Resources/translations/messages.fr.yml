@@ -29,6 +29,8 @@ cm:
   new_invoice_item: Nouvelle ligne
   history: Historique
   budget: Budget
+  company: Société
+  companies: Sociétés
 
   dashboard:
     current_projects: Projets en cours

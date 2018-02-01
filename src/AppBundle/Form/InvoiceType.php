@@ -20,6 +20,7 @@ class InvoiceType extends AbstractType
     {
         $builder
             ->add('client')
+            ->add('company')
             ->add('code', TextType::class, [
                 'required' => false
             ])

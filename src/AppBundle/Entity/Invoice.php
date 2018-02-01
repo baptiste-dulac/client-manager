@@ -70,6 +70,12 @@ class Invoice
      */
     protected $invoiceItems;
 
+    /**
+     * @var Company
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Company")
+     */
+    protected $company;
+
     public function __construct()
     {
         $this->invoiceItems = new ArrayCollection();
@@ -235,5 +241,21 @@ class Invoice
             $this->invoiceItems->removeElement($invoiceItem);
             $invoiceItem->setInvoice(null);
         }
+    }
+
+    /**
+     * @return Company
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param Company $company
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
     }
 }

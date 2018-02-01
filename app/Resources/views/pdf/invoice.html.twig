@@ -51,16 +51,16 @@
             <img src="{{ absolute_url(asset('assets/img/logo.png')) }}" id="logo">
         </td>
         <td>
-            <h1>{{ client.company }}</h1>
+            <h1>{{ invoice.company }}</h1>
             <p>
-                {{ client.company.address }}<br/>
-                {{ client.company.zipCode }} {{ client.city }}<br/>
+                {{ invoice.company.address }}<br/>
+                {{ invoice.company.zipCode }} {{ invoice.city }}<br/>
                 Tél. : 06 50 18 28 81<br/>
                 Email : dulacbaptiste@gmail.com<br/>
             </p>
             <p>
                 Auto-Entrepreneur<br/>
-                SIRET : {{ client.company.registrationNumber }}
+                SIRET : {{ invoice.company.registrationNumber }}
             </p>
         </td>
         <td class="right">

@@ -51,10 +51,10 @@
             <img src="{{ absolute_url(asset('assets/img/logo.png')) }}" id="logo">
         </td>
         <td>
-            <h1>{{ invoice.company }}</h1>
+            <h1>{{ invoice.company.name }}</h1>
             <p>
                 {{ invoice.company.address }}<br/>
-                {{ invoice.company.zipCode }} {{ invoice.city }}<br/>
+                {{ invoice.company.zipCode }} {{ invoice.user.city }}<br/>
                 Tél. : 06 50 18 28 81<br/>
                 Email : dulacbaptiste@gmail.com<br/>
             </p>

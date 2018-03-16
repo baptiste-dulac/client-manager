@@ -1,0 +1,58 @@
+easy_admin:
+    site_name: Client Manager
+    design:
+        assets:
+            favicon:
+                path: "favicon.png"
+                mime_type: "image/png"
+        form_theme: "vertical"
+    entities:
+        clients:
+            class: App\Entity\Client
+        invoices:
+            class: App\Entity\Invoice
+            list:
+                actions:
+                    - {name: "invoice_download", type: "route", label: "Download"}
+                fields:
+                    - code
+                    - paid
+                    - amount
+                    - createdAt
+                    - client
+                    - project
+            form:
+                fields:
+                    - { type: "group", css_class: "col-sm-12 col-md-4", label: "Basic information" }
+                    - { property: "client" }
+                    - { property: "project" }
+                    - { property: "company" }
+                    - { type: "section", label: "Financial" }
+                    - { property: "paid" }
+                    - { property: "amount" }
+                    - { property: "createdAt", type: "date", type_options: { format: "dd/MM/yyyy" } }
+                    - { type: "group", css_class: "col-sm-12 col-md-4", label: "Invoice Items" }
+                    -
+                        property: "items"
+                        type: "collection"
+                        type_options:
+                            entry_type: App\Form\Admin\InvoiceItemType
+                            allow_add: true
+                            allow_delete: true
+                            by_reference: false
+                    - { type: "group", css_class: "col-sm-12 col-md-4", label: "Discounts" }
+                    -
+                        property: "discounts"
+                        type: "collection"
+                        type_options:
+                            entry_type: App\Form\Admin\DiscountType
+                            allow_add: true
+                            allow_delete: true
+                            by_reference: false
+        projects:
+            class: App\Entity\Project
+        users:
+            disabled_actions: ["new", "delete", "edit"]
+            class: App\Entity\User
+        companies:
+            class: App\Entity\Company

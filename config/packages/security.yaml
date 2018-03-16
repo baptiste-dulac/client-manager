@@ -1,0 +1,24 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        app_user:
+            entity:
+                class: App\Entity\User
+                property: username
+    encoders:
+        App\Entity\User: argon2i
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                path:   /logout
+                target: /
+    access_control:
+         - { path: ^/admin, roles: ROLE_ADMIN }

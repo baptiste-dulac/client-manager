@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Client Manager{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <!-- Compiled and minified CSS -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+<!-- Compiled and minified JavaScript -->
+</body>
+</html>

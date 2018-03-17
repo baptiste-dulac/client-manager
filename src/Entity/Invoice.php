@@ -68,6 +68,12 @@ class Invoice extends DiscountList implements HasAmount
      */
     protected $quote;
 
+    /**
+     * @Assert\Valid()
+     * @ORM\OneToMany(targetEntity="App\Entity\InvoiceItem", mappedBy="invoice", cascade={"persist"}, orphanRemoval=true)
+     */
+    protected $items;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();

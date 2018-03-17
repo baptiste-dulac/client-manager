@@ -61,6 +61,12 @@ class Quote extends InvoiceItemList implements HasAmount
      */
     protected $company;
 
+    /**
+     * @Assert\Valid()
+     * @ORM\OneToMany(targetEntity="App\Entity\InvoiceItem", mappedBy="quote", cascade={"persist"}, orphanRemoval=true)
+     */
+    protected $items;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();

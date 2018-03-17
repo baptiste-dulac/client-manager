@@ -108,4 +108,14 @@ class InvoiceItem
     {
         return $this->amount * $this->quantity;
     }
+
+    public function quote()
+    {
+        return $this->quote;
+    }
+
+    public function setQuote($quote): void
+    {
+        $this->quote = $quote;
+    }
 }

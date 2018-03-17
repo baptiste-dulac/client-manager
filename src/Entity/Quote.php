@@ -77,6 +77,22 @@ class Quote extends InvoiceItemList implements HasAmount
         return sprintf('%s - %s - %s', $this->code, $this->createdAt->format('Y-m-d'), $this->amount);
     }
 
+    public function addItem(InvoiceItem $item): void
+    {
+        if (!$this->items->contains($item)) {
+            $this->items->add($item);
+            $item->setQuote($this);
+        }
+    }
+
+    public function removeItem(InvoiceItem $item): void
+    {
+        if ($this->items->contains($item)) {
+            $this->items->removeElement($item);
+            $item->setQuote(null);
+        }
+    }
+
     public function id()
     {
         return $this->id;

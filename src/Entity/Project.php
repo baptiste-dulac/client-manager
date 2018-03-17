@@ -35,6 +35,7 @@ class Project
     protected $name;
 
     /**
+     * @Assert\NotNull()
      * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="projects", cascade={"persist"})
      */
     protected $client;
@@ -50,6 +51,7 @@ class Project
     protected $endsAt;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(name="budget", type="float")
      */
     protected $budget;

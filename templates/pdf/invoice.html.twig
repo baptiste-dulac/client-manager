@@ -21,7 +21,7 @@
 
     <table class="celled">
         <tr>
-            <th>Désignation</th><th>Prix unitaire</th><th>Quantité</th><th>Total</th>
+            <th width="55%">Désignation</th><th width="15%">Prix unitaire</th><th width="15%">Quantité</th><th width="15%">Total</th>
         </tr>
         {% for item in invoice.items %}
             {% set amount = amount + item.total %}

@@ -147,6 +147,4 @@ class Quote extends InvoiceItemList implements HasAmount
         return $this->accepted;
     }
 
-
-
 }

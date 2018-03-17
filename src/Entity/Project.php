@@ -160,4 +160,14 @@ class Project
         $this->invoices = $invoices;
     }
 
+    public function quotes()
+    {
+        return $this->quotes;
+    }
+
+    public function setQuotes($quotes): void
+    {
+        $this->quotes = $quotes;
+    }
+
 }

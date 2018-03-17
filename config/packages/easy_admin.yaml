@@ -9,6 +9,18 @@ easy_admin:
     entities:
         clients:
             class: App\Entity\Client
+            form:
+                fields:
+                    - { type: "group", css_class: "col-sm-12 col-md-6", label: "Basic information" }
+                    - { property: "name" }
+                    - { property: "registrationNumber" }
+                    - { property: "vatNumber" }
+                    - { type: "group", css_class: "col-sm-12 col-md-6", label: "Addresses" }
+                    - { property: "addressLine1" }
+                    - { property: "addressLine2" }
+                    - { property: "zipCode" }
+                    - { property: "city" }
+                    - { property: "countryCode", type: "country" }
         invoices:
             class: App\Entity\Invoice
             list:
@@ -81,8 +93,30 @@ easy_admin:
                             by_reference: false
         projects:
             class: App\Entity\Project
+            form:
+                fields:
+                    - { type: "group", css_class: "col-sm-12 col-md-6", label: "Basic information" }
+                    - { property: "name" }
+                    - { property: "budget" }
+                    - { type: "group", css_class: "col-sm-12 col-md-4", label: "Dates" }
+                    - { property: "startsAt", type: "date", type_options: { format: "dd/MM/yyyy" } }
+                    - { property: "endsAt", type: "date", type_options: { format: "dd/MM/yyyy" } }
         users:
             disabled_actions: ["new", "delete", "edit"]
             class: App\Entity\User
         companies:
             class: App\Entity\Company
+            form:
+                fields:
+                    - { type: "group", css_class: "col-sm-12 col-md-6", label: "Basic information" }
+                    - { property: "name" }
+                    - { property: "registrationNumber" }
+                    - { property: "vatNumber" }
+                    - { property: "type" }
+                    - { type: "group", css_class: "col-sm-12 col-md-6", label: "Addresses" }
+                    - { property: "addressLine1" }
+                    - { property: "addressLine2" }
+                    - { property: "zipCode" }
+                    - { property: "city" }
+                    - { property: "countryCode", type: "country" }
+

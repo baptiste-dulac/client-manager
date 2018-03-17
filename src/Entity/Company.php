@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use App\Traits\AddressTrait;
+use App\Traits\DatedTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="cm_company")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Company
 {
@@ -21,6 +23,7 @@ class Company
     protected $id;
 
     use AddressTrait;
+    use DatedTrait;
 
     /**
      * @Assert\NotBlank()

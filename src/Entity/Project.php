@@ -64,9 +64,20 @@ class Project
      */
     protected $invoices;
 
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="App\Entity\Quote",
+     *     mappedBy="project",
+     *     orphanRemoval=true,
+     *     cascade={"persist"}
+     * )
+     */
+    protected $quotes;
+
     public function __construct()
     {
         $this->invoices = new ArrayCollection();
+        $this->quotes = new ArrayCollection();
     }
 
     public function __toString()

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -19,11 +20,13 @@ class InvoiceItem
     protected $id;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(name="amount", type="float")
      */
     protected $amount;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(name="details", type="text")
      */
     protected $details;
@@ -33,6 +36,18 @@ class InvoiceItem
      * @ORM\JoinColumn(name="invoice_id", onDelete="SET NULL")
      */
     protected $invoice;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Quote", inversedBy="items")
+     * @ORM\JoinColumn(name="quote_id", onDelete="SET NULL")
+     */
+    protected $quote;
+
+    /**
+     * @Assert\NotBlank()
+     * @ORM\Column(name="quantity", type="integer")
+     */
+    protected $quantity;
 
     public function __toString()
     {
@@ -79,4 +94,18 @@ class InvoiceItem
         $this->invoice = $invoice;
     }
 
+    public function quantity()
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity($quantity): void
+    {
+        $this->quantity = $quantity;
+    }
+
+    public function total(): int
+    {
+        return $this->amount * $this->quantity;
+    }
 }

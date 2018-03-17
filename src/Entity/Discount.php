@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -19,11 +20,13 @@ class Discount
     protected $id;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(name="amount", type="float")
      */
     protected $amount;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(name="details", type="text")
      */
     protected $details;
@@ -34,9 +37,20 @@ class Discount
      */
     protected $invoice;
 
+    /**
+     * @Assert\NotBlank()
+     * @ORM\Column(name="quantity", type="integer")
+     */
+    protected $quantity;
+
     public function __toString()
     {
         return sprintf('%s - %s', substr($this->details, 0, 50), $this->amount);
+    }
+
+    public function total()
+    {
+        return $this->amount * $this->quantity;
     }
 
     public function amount()
@@ -67,6 +81,26 @@ class Discount
     public function setInvoice($invoice): void
     {
         $this->invoice = $invoice;
+    }
+
+    public function id()
+    {
+        return $this->id;
+    }
+
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    public function quantity()
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity($quantity): void
+    {
+        $this->quantity = $quantity;
     }
 
 }

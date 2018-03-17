@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/admin")
@@ -13,10 +12,8 @@ class DashboardController extends AdminController
 {
     /**
      * @Route("/dashboard", name="homepage")
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function dashboardAction(Request $request)
+    public function dashboardAction()
     {
         $charts = $this->get('cm.chart_service');
         return $this->render(':default:index.html.twig', [

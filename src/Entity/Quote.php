@@ -2,20 +2,18 @@
 
 namespace App\Entity;
 
-
-use App\Entity\Abstracts\DiscountList;
+use App\Entity\Abstracts\InvoiceItemList;
 use App\Entity\Interfaces\HasAmount;
 use App\Traits\DatedTrait;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="cm_invoices")
- * @ORM\Entity(repositoryClass="App\Repository\InvoiceRepository")
+ * @ORM\Entity()
+ * @ORM\Table(name="cm_quote")
  * @ORM\HasLifecycleCallbacks()
  */
-class Invoice extends DiscountList implements HasAmount
+class Quote extends InvoiceItemList implements HasAmount
 {
 
     use DatedTrait;
@@ -38,9 +36,10 @@ class Invoice extends DiscountList implements HasAmount
     protected $amount;
 
     /**
+     * @Assert\NotNull()
      * @ORM\Column(name="paid", type="boolean")
      */
-    protected $paid = false;
+    protected $accepted = false;
 
     /**
      * @Assert\NotNull()
@@ -51,7 +50,7 @@ class Invoice extends DiscountList implements HasAmount
 
     /**
      * @Assert\NotNull()
-     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="invoices",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="quotes", cascade={"persist"})
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $project;
@@ -62,53 +61,9 @@ class Invoice extends DiscountList implements HasAmount
      */
     protected $company;
 
-    /**
-     * @Assert\NotNull()
-     * @ORM\ManyToOne(targetEntity="App\Entity\Quote")
-     */
-    protected $quote;
-
-    public function __construct()
-    {
-        $this->items = new ArrayCollection();
-        $this->discounts = new ArrayCollection();
-    }
-
     public function __toString()
     {
         return sprintf('%s - %s - %s', $this->code, $this->createdAt->format('Y-m-d'), $this->amount);
-    }
-
-    public function addItem(InvoiceItem $item): void
-    {
-        if (!$this->items->contains($item)) {
-            $this->items->add($item);
-            $item->setInvoice($this);
-        }
-    }
-
-    public function removeItem(InvoiceItem $item): void
-    {
-        if ($this->items->contains($item)) {
-            $this->items->removeElement($item);
-            $item->setInvoice(null);
-        }
-    }
-
-    public function addDiscount(Discount $discount): void
-    {
-        if (!$this->discounts->contains($discount)) {
-            $this->discounts->add($discount);
-            $discount->setInvoice($this);
-        }
-    }
-
-    public function removeDiscount(Discount $discount): void
-    {
-        if ($this->discounts->contains($discount)) {
-            $this->discounts->removeElement($discount);
-            $discount->setInvoice(null);
-        }
     }
 
     public function id()
@@ -141,16 +96,6 @@ class Invoice extends DiscountList implements HasAmount
         $this->amount = $amount;
     }
 
-    public function paid()
-    {
-        return $this->paid;
-    }
-
-    public function setPaid($paid): void
-    {
-        $this->paid = $paid;
-    }
-
     public function client()
     {
         return $this->client;
@@ -181,14 +126,14 @@ class Invoice extends DiscountList implements HasAmount
         $this->company = $company;
     }
 
-    public function quote()
+    public function setAccepted($accepted): void
     {
-        return $this->quote;
+        $this->accepted = $accepted;
     }
 
-    public function setQuote($quote): void
+    public function accepted()
     {
-        $this->quote = $quote;
+        return $this->accepted;
     }
 
 }

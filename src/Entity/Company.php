@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use App\Traits\AddressTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -18,34 +20,36 @@ class Company
      */
     protected $id;
 
+    use AddressTrait;
+
     /**
-     * @ORM\Column(name="name")
+     * @Assert\NotBlank()
+     * @ORM\Column(name="name", length=50)
      */
     protected $name;
 
     /**
-     * @ORM\Column(name="address")
-     */
-    protected $address;
-
-    /**
-     * @ORM\Column(name="city", length=45)
-     */
-    protected $city;
-
-    /**
-     * @ORM\Column(name="zip_code", length=10)
-     */
-    protected $zipCode;
-
-    /**
-     * @ORM\Column(name="registration_number", length=15)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="registration_number", length=30)
      */
     protected $registrationNumber;
 
+    /**
+     * @ORM\Column(name="vat_number", length=30, nullable=true)
+     * @Assert\NotBlank()
+     */
+    protected $vatNumber;
+
+    /**
+     * @Assert\NotBlank()
+     * @ORM\Column(name="type")
+     */
+    protected $type;
+
     public function __toString()
     {
-        return sprintf('%s - SIREN : %s', $this->name, $this->registrationNumber);
+        return sprintf('%s - SIREN : %s', $this->name,
+            $this->registrationNumber);
     }
 
     public function id()
@@ -68,36 +72,6 @@ class Company
         $this->name = $name;
     }
 
-    public function address()
-    {
-        return $this->address;
-    }
-
-    public function setAddress($address): void
-    {
-        $this->address = $address;
-    }
-
-    public function city()
-    {
-        return $this->city;
-    }
-
-    public function setCity($city): void
-    {
-        $this->city = $city;
-    }
-
-    public function zipCode()
-    {
-        return $this->zipCode;
-    }
-
-    public function setZipCode($zipCode): void
-    {
-        $this->zipCode = $zipCode;
-    }
-
     public function registrationNumber()
     {
         return $this->registrationNumber;
@@ -106,6 +80,26 @@ class Company
     public function setRegistrationNumber($registrationNumber): void
     {
         $this->registrationNumber = $registrationNumber;
+    }
+
+    public function vatNumber()
+    {
+        return $this->vatNumber;
+    }
+
+    public function setVatNumber($vatNumber): void
+    {
+        $this->vatNumber = $vatNumber;
+    }
+
+    public function type()
+    {
+        return $this->type;
+    }
+
+    public function setType($type): void
+    {
+        $this->type = $type;
     }
 
 }

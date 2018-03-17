@@ -4,10 +4,11 @@ namespace App\EventListener;
 
 use App\Entity\Invoice;
 use App\Repository\InvoiceRepository;
+use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class InvoiceSubscriber implements EventSubscriberInterface
+class InvoiceCodeGeneratorSubscriber implements EventSubscriberInterface
 {
 
     private $invoices;
@@ -20,7 +21,7 @@ class InvoiceSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            'easy_admin.pre_persist' => 'generateCode'
+            EasyAdminEvents::PRE_PERSIST => 'generateCode'
         ];
     }
 
@@ -37,7 +38,6 @@ class InvoiceSubscriber implements EventSubscriberInterface
         do {
             ++$count;
             $code = sprintf('F-DULAC-%s-%03d', $entity->createdAt()->format('Ym'), $count);
-            var_dump($code);
         } while ($this->invoices->existsWithCodeEndingBy(sprintf('-%03d%%', $count)));
 
         $entity->setCode($code);

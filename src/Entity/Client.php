@@ -33,10 +33,16 @@ class Client
     protected $name;
 
     /**
-     * @ORM\Column(name="registration_number", length=20)
+     * @ORM\Column(name="registration_number", length=30)
      * @Assert\NotBlank()
      */
     protected $registrationNumber;
+
+    /**
+     * @ORM\Column(name="vat_number", length=30, nullable=true)
+     * @Assert\NotBlank()
+     */
+    protected $vatNumber;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="client", orphanRemoval=true)

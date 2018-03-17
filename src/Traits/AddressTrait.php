@@ -8,13 +8,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 trait AddressTrait
 {
     /**
-     * @ORM\Column(name="address_line1")
+     * @ORM\Column(name="address_line1", length=80)
      * @Assert\NotBlank()
      */
     protected $addressLine1;
 
     /**
-     * @ORM\Column(name="address_line2", nullable=true)
+     * @ORM\Column(name="address_line2", nullable=true, length=80)
      */
     protected $addressLine2;
 
@@ -25,13 +25,13 @@ trait AddressTrait
     protected $city;
 
     /**
-     * @ORM\Column(name="zip_code", length=5)
+     * @ORM\Column(name="zip_code", length=20)
      * @Assert\NotBlank()
      */
     protected $zipCode;
 
     /**
-     * @ORM\Column(name="country", length=2)
+     * @ORM\Column(name="country", length=3)
      * @Assert\NotBlank()
      */
     protected $countryCode;

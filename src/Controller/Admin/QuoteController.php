@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Invoice;
+use App\Entity\Quote;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController;
 use Knp\Snappy\Pdf;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,29 +13,29 @@ use Symfony\Component\Routing\Annotation\Route;
  * @package App\Controller
  * @Route("/admin")
  */
-class InvoiceController extends AdminController
+class QuoteController extends AdminController
 {
 
     /**
-     * @Route("/invoices/download/{id}", name="invoice_download")
+     * @Route("/quotes/download/{id}", name="quote_download")
      */
-    public function downloadAction(Invoice $invoice, Pdf $knp)
+    public function downloadAction(Quote $quote, Pdf $knp)
     {
-        $html = $this->renderView('pdf/invoice.html.twig', array(
-            'invoice'  => $invoice
+        $html = $this->renderView('pdf/quote.html.twig', array(
+            'quote' => $quote
         ));
 
         $footer = $this->renderView('pdf/_footer.html.twig');
 
         $header = $this->renderView('pdf/_header.html.twig', array(
-            'date' => $invoice->createdAt()->format('d/m/Y'),
-            'title' => $invoice->code()
+            'date' => $quote->createdAt()->format('d/m/Y'),
+            'title' => $quote->code()
         ));
 
         $knp->setOption('footer-html', $footer);
         $knp->setOption('header-html', $header);
 
-        $filename = sprintf('%s_%s.pdf', $invoice->code(), $invoice->client()->name());
+        $filename = sprintf('%s_%s.pdf', $quote->code(), $quote->client()->name());
 
         return new Response(
             $knp->getOutputFromHtml($html),

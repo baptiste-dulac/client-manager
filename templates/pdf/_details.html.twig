@@ -1,0 +1,9 @@
+<h1>{{ details.name }}</h1>
+<p>
+    {{ details.addressLine1 }}<br/>
+    {% if details.addressLine2 %}{{ details.addressLine2 }}<br/>{% endif %}
+    {{ details.zipCode }} {{ details.city }}
+</p>
+<p>
+    SIRET : {{ details.registrationNumber }}
+</p>

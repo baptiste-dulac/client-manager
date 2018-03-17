@@ -99,4 +99,14 @@ class Client
         $this->projects = $projects;
     }
 
+    public function vatNumber()
+    {
+        return $this->vatNumber;
+    }
+
+    public function setVatNumber($vatNumber): void
+    {
+        $this->vatNumber = $vatNumber;
+    }
+
 }

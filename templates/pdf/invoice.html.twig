@@ -16,7 +16,7 @@
 
 {% block body %}
     <h1>Facture n°{{ invoice.code }}<small>{{ invoice.createdAt|date('d/m/Y') }}</small></h1>
-    <strong>Code projet : {{ invoice.project.code }}</strong>{% if invoice.quote %} - Code Devis : {{ invoice.quote.code }}{% endif %}
+    <strong>Projet n° {{ invoice.project.code }}</strong>{% if invoice.quote %} - Devis n° {{ invoice.quote.code }}{% endif %}
     <div class="divider"></div>
 
     <table class="celled">

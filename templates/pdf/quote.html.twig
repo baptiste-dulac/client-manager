@@ -10,8 +10,8 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Code devis : {{ quote.code }}<small>{{ quote.createdAt|date('d/m/Y') }}</small></h1>
-    <strong>Code projet : {{ quote.project.code }}</strong>
+    <h1>Devis n°{{ quote.code }}<small>{{ quote.createdAt|date('d/m/Y') }}</small></h1>
+    <strong>Projet n° {{ quote.project.code }}</strong>
     <div class="divider"></div>
 
     <table class="celled">

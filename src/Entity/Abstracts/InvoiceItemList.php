@@ -5,7 +5,7 @@ namespace App\Entity\Abstracts;
 use App\Entity\Interfaces\HasInvoiceItem;
 use Doctrine\Common\Collections\Collection;
 
-abstract class InvoiceItemList implements HasInvoiceItem
+abstract class InvoiceItemList extends DomainObject implements HasInvoiceItem
 {
 
     protected $items;

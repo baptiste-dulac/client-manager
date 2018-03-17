@@ -9,6 +9,11 @@ easy_admin:
     entities:
         clients:
             class: App\Entity\Client
+            list:
+                fields:
+                    - name
+                    - registrationNumber
+                    - projects
             form:
                 fields:
                     - { type: "group", css_class: "col-sm-12 col-md-6", label: "Basic information" }
@@ -33,6 +38,7 @@ easy_admin:
                     - createdAt
                     - client
                     - project
+                    - quote
             form:
                 fields:
                     - { type: "group", css_class: "col-sm-12 col-md-4", label: "Basic information" }
@@ -93,11 +99,20 @@ easy_admin:
                             by_reference: false
         projects:
             class: App\Entity\Project
+            list:
+                fields:
+                    - id
+                    - name
+                    - client
+                    - budget
+                    - quotes
+                    - invoices
+                    - startsAt
+                    - endsAt
             form:
                 fields:
                     - { type: "group", css_class: "col-sm-12 col-md-6", label: "Basic information" }
                     - { property: "name" }
-                    - { property: "budget" }
                     - { property: "client" }
                     - { type: "group", css_class: "col-sm-12 col-md-4", label: "Dates" }
                     - { property: "startsAt", type: "date", type_options: { format: "dd/MM/yyyy" } }
@@ -107,6 +122,11 @@ easy_admin:
             class: App\Entity\User
         companies:
             class: App\Entity\Company
+            list:
+                fields:
+                    - name
+                    - registrationNumber
+                    - type
             form:
                 fields:
                     - { type: "group", css_class: "col-sm-12 col-md-6", label: "Basic information" }

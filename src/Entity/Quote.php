@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Abstracts\InvoiceItemList;
 use App\Entity\Interfaces\HasAmount;
+use App\EventListener\QuoteAcceptedListener;
 use App\Traits\DatedTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -133,7 +134,7 @@ class Quote extends InvoiceItemList implements HasAmount
         $this->client = $client;
     }
 
-    public function project()
+    public function project(): ?Project
     {
         return $this->project;
     }
@@ -155,7 +156,11 @@ class Quote extends InvoiceItemList implements HasAmount
 
     public function setAccepted($accepted): void
     {
-        $this->accepted = $accepted;
+        if ($accepted !== $this->accepted) {
+            $this->addPropertyChangedListener(new QuoteAcceptedListener());
+            $this->onPropertyChanged('accepted', $this->accepted, $accepted);
+            $this->accepted = $accepted;
+        }
     }
 
     public function accepted()

@@ -51,10 +51,9 @@ class Project
     protected $endsAt;
 
     /**
-     * @Assert\NotBlank()
      * @ORM\Column(name="budget", type="float")
      */
-    protected $budget;
+    protected $budget = 0;
 
     /**
      * @ORM\OneToMany(

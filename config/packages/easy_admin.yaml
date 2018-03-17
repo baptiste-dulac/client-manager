@@ -98,6 +98,7 @@ easy_admin:
                     - { type: "group", css_class: "col-sm-12 col-md-6", label: "Basic information" }
                     - { property: "name" }
                     - { property: "budget" }
+                    - { property: "client" }
                     - { type: "group", css_class: "col-sm-12 col-md-4", label: "Dates" }
                     - { property: "startsAt", type: "date", type_options: { format: "dd/MM/yyyy" } }
                     - { property: "endsAt", type: "date", type_options: { format: "dd/MM/yyyy" } }

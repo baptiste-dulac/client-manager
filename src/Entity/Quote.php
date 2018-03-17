@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Abstracts\InvoiceItemList;
 use App\Entity\Interfaces\HasAmount;
 use App\Traits\DatedTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -36,7 +37,6 @@ class Quote extends InvoiceItemList implements HasAmount
     protected $amount;
 
     /**
-     * @Assert\NotNull()
      * @ORM\Column(name="paid", type="boolean")
      */
     protected $accepted = false;
@@ -60,6 +60,11 @@ class Quote extends InvoiceItemList implements HasAmount
      * @ORM\ManyToOne(targetEntity="App\Entity\Company")
      */
     protected $company;
+
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -135,5 +140,7 @@ class Quote extends InvoiceItemList implements HasAmount
     {
         return $this->accepted;
     }
+
+
 
 }

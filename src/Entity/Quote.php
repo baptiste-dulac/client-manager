@@ -43,6 +43,11 @@ class Quote extends InvoiceItemList implements HasAmount
     protected $accepted = false;
 
     /**
+     * @ORM\Column(name="deadline", type="date", nullable=true)
+     */
+    protected $deadline;
+
+    /**
      * @Assert\NotNull()
      * @ORM\ManyToOne(targetEntity="App\Entity\Client", cascade={"persist"})
      * @ORM\JoinColumn(onDelete="CASCADE")
@@ -166,6 +171,16 @@ class Quote extends InvoiceItemList implements HasAmount
     public function accepted()
     {
         return $this->accepted;
+    }
+
+    public function deadline(): ?\DateTime
+    {
+        return $this->deadline;
+    }
+
+    public function setDeadline($deadline): void
+    {
+        $this->deadline = $deadline;
     }
 
 }

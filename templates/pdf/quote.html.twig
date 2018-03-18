@@ -11,7 +11,7 @@
 
 {% block body %}
     <h1>Devis n°{{ quote.code }}<small>{{ quote.createdAt|date('d/m/Y') }}</small></h1>
-    <strong>Projet n° {{ quote.project.code }}</strong>{% if quote.deadline %} - Prestation livrée avant le {{ quote.deadline|format('d/m/Y') }}{% endif %}
+    <strong>Projet n° {{ quote.project.code }}</strong>{% if quote.deadline %} - Prestation livrée avant le {{ quote.deadline|date('d/m/Y') }}{% endif %}
     <div class="divider"></div>
 
     <table class="celled">

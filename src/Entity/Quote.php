@@ -43,6 +43,7 @@ class Quote extends InvoiceItemList implements HasAmount
     protected $accepted = false;
 
     /**
+     * @Assert\NotNull()
      * @ORM\Column(name="deadline", type="date", nullable=true)
      */
     protected $deadline;
@@ -72,6 +73,11 @@ class Quote extends InvoiceItemList implements HasAmount
      * @ORM\OneToMany(targetEntity="App\Entity\InvoiceItem", mappedBy="quote", cascade={"persist"}, orphanRemoval=true)
      */
     protected $items;
+
+    /**
+     * @Assert\NotNull()
+     */
+    protected $createdAt;
 
     public function __construct()
     {

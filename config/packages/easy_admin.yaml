@@ -88,6 +88,7 @@ easy_admin:
                     - { property: "company" }
                     - { type: "section", label: "Financial" }
                     - { property: "accepted" }
+                    - { property: "code" }
                     - { property: "deadline", type: "date", type_options: { format: "dd/MM/yyyy" } }
                     - { property: "createdAt", type: "date", type_options: { format: "dd/MM/yyyy" } }
                     - { type: "group", css_class: "col-sm-12 col-md-4", label: "Invoice Items" }

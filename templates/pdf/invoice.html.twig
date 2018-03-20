@@ -1,17 +1,11 @@
 {% extends 'pdf/layout.html.twig' %}
 {% set amount = 0 %}
-{% block details %}
-    <h1>{{ invoice.company.name }}</h1>
-    <p>
-        {{ invoice.company.address }}<br/>
-        {{ invoice.company.zipCode }} {{ invoice.company.city }}<br/>
-        Tél. : 06 50 18 28 81<br/>
-        Email : dulacbaptiste@gmail.com<br/>
-    </p>
-    <p>
-        Auto-Entrepreneur<br/>
-        SIRET : {{ invoice.company.registrationNumber }}
-    </p>
+
+{% block client_details %}
+    {%  include 'pdf/_details.html.twig' with {details: invoice.client} %}
+{% endblock %}
+{% block company_details %}
+    {%  include 'pdf/_details.html.twig' with {details: invoice.company} %}
 {% endblock %}
 
 {% block body %}

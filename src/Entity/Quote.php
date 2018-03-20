@@ -74,11 +74,6 @@ class Quote extends InvoiceItemList implements HasAmount
      */
     protected $items;
 
-    /**
-     * @Assert\NotNull()
-     */
-    protected $createdAt;
-
     public function __construct()
     {
         $this->items = new ArrayCollection();

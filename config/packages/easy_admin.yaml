@@ -5,6 +5,10 @@ easy_admin:
             favicon:
                 path: "favicon.png"
                 mime_type: "image/png"
+            css:
+                - 'css/chartist.min.css'
+            js:
+                - 'js/chartist.min.js'
         form_theme: "vertical"
     entities:
         clients:

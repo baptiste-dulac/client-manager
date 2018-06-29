@@ -2,31 +2,19 @@
 
 namespace App\Service;
 
-use Doctrine\ORM\EntityManager;
+use App\Repository\InvoiceRepository;
 
-/**
- * Class ChartService
- * @package App\Service
- */
 class ChartService
 {
 
-    private $em;
+    private $invoices;
 
-    /**
-     * ChartService constructor.
-     * @param EntityManager $entityManager
-     */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(InvoiceRepository $invoices)
     {
-        $this->em = $entityManager;
+        $this->invoices = $invoices;
     }
 
-    /**
-     * @param $results
-     * @return array
-     */
-    private function formatResults($results)
+    private function formatResults($results): array
     {
         $data = [];
         foreach ($results as $r)
@@ -34,10 +22,7 @@ class ChartService
         return $data;
     }
 
-    /**
-     * @return array
-     */
-    public function summaryChart()
+    public function summaryChart(): array
     {
         $labels = [];
         $series = [
@@ -46,8 +31,8 @@ class ChartService
         ];
         $history = 12;
         $from = \DateTime::createFromFormat('U', mktime(null, null, null, date('m') - 12));
-        $invoicePaid = $this->formatResults($this->em->getRepository('AppBundle:Invoice')->findAmountGroupedByMonth($from, true));
-        $invoiceNotPaid = $this->formatResults($this->em->getRepository('AppBundle:Invoice')->findAmountGroupedByMonth($from, false));
+        $invoicePaid = $this->formatResults($this->invoices->findAmountGroupedByMonth($from, true));
+        $invoiceNotPaid = $this->formatResults($this->invoices->findAmountGroupedByMonth($from, false));
 
         for ($i = $history; $i >= 0; --$i)
         {

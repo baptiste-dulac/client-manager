@@ -2,6 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Repository\InvoiceRepository;
+use App\Repository\ProjectRepository;
+use App\Service\ChartService;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -13,23 +16,26 @@ class DashboardController extends AdminController
     /**
      * @Route("/dashboard", name="homepage")
      */
-    public function dashboardAction()
+    public function dashboardAction(
+        ChartService $charts,
+        ProjectRepository $projects,
+        InvoiceRepository $invoices
+    )
     {
-        $charts = $this->get('cm.chart_service');
-        return $this->render(':default:index.html.twig', [
-            'projects' => $this->getDoctrine()->getRepository('AppBundle:Project')->findCurrentProjects(),
-            'invoices' => $this->getDoctrine()->getRepository('AppBundle:Invoice')->findBy([], ['createdAt' => 'DESC'], 10),
+        return $this->render('front/dashboard/index.html.twig', [
+            'projects' => $projects->findCurrentProjects(),
+            'invoices' => $invoices->findBy([], ['createdAt' => 'DESC'], 10),
             'charts' => [
                 'summary' => $charts->summaryChart(),
             ],
             'sum' => [
                 'month' => [
-                    'paid' => $this->getDoctrine()->getRepository('AppBundle:Invoice')->findCurrentMonth(true),
-                    'not_paid' => $this->getDoctrine()->getRepository('AppBundle:Invoice')->findCurrentMonth(false),
+                    'paid' => $invoices->findCurrentMonth(true),
+                    'not_paid' => $invoices->findCurrentMonth(false),
                 ],
                 'year' => [
-                    'paid' => $this->getDoctrine()->getRepository('AppBundle:Invoice')->findCurrentYear(true),
-                    'not_paid' => $this->getDoctrine()->getRepository('AppBundle:Invoice')->findCurrentYear(false),
+                    'paid' => $invoices->findCurrentYear(true),
+                    'not_paid' => $invoices->findCurrentYear(false),
                 ],
             ]
         ]);

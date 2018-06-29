@@ -1,93 +1,109 @@
-{% extends '::layout.html.twig' %}
+{% extends '@EasyAdmin/default/layout.html.twig' %}
 
-{% block body %}
-    <h1>Dashboard</h1>
-
-    <div class="row">
-        <div class="col l12 xl6">
-
-            <div class="card white">
-                <div class="card-content">
-                    <span class="card-title">{{ 'cm.dashboard.current_projects'|trans }}</span>
-                    <table>
+{% block content %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div id="summary-chart"></div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="page-header">
+                        <h2>Activity</h2>
+                    </div>
+                    <table class="table table-bordered table-condensed">
                         <tr>
-                            <th>{{ 'cm.name'|trans }}</th>
-                            <th>{{ 'cm.endsAt'|trans }}</th>
-                            <th></th>
+                            <th colspan="2">{{ 'now'|date('M Y') }}</th>
+                        </tr>
+                        <tr>
+                            <td>Payée</td><td>{{ sum.month.paid|price }}</td>
+                        </tr>
+                        <tr>
+                            <td>En attente</td><td>{{ sum.month.not_paid|price }}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">{{ 'now'|date('Y') }}</th>
+                        </tr>
+                        <tr>
+                            <td>Payée</td><td>{{ sum.year.paid|price }}</td>
+                        </tr>
+                        <tr>
+                            <td>En attente</td><td>{{ sum.year.not_paid|price }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="col-lg-6 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="page-header">
+                        <h2>Current projects</h2>
+                    </div>
+                    <table class="table table-bordered table-condensed">
+                        <tr>
+                            <th>Name</th>
+                            <th>Budget</th>
+                            <th>Ends At</th>
                         </tr>
                         {% for project in projects %}
                             <tr>
                                 <td>{{ project.name }}</td>
+                                <td>{{ project.budget|price }}</td>
                                 <td>{{ project.endsAt|date('M d Y') }}</td>
-                                <td>
-                                    <a href="{{ path('app_project_edit', {id: project.id}) }}"><i class="material-icons">edit</i></a>
-                                </td>
                             </tr>
-                            {% else %}
-                            <tr><td colspan="3"><em>{{ 'cm.no_project'|trans }}</em></td></tr>
+                        {% else %}
+                            <tr><td colspan="3"><em>No projects</em></td></tr>
                         {% endfor %}
                     </table>
                 </div>
             </div>
-
-            <div class="card white">
-                <div class="card-content">
-                    <span class="card-title">{{ 'cm.dashboard.last_invoices'|trans }}</span>
-                    <table class="bordered">
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="page-header">
+                        <h2>Last invoices</h2>
+                    </div>
+                    <table class="table table-bordered table-condensed">
+                        <tr>
+                            <th>Code</th>
+                            <th>Amount</th>
+                            <th>Name</th>
+                        </tr>
                         {% for invoice in invoices %}
                             <tr>
                                 <td>{{ invoice.code }}</td>
                                 <td>{{ invoice.amount|price }}</td>
                                 <td>{{ invoice.project.name }}</td>
-                                <td>
-                                    <i class="material-icons{% if invoice.paid %} green-text{% else %} red-text{% endif %}">{% if invoice.paid %}done{% else %}clear{% endif %}</i>
-                                    <a href="{{ path('app_invoice_edit', {id: invoice.id}) }}"><i class="material-icons black-text">edit</i></a>
-                                    <a href="{{ path('app_invoice_download', {id: invoice.id}) }}"><i class="material-icons black-text">file_download</i></a>
-                                </td>
                             </tr>
                         {% endfor %}
                     </table>
                 </div>
             </div>
         </div>
-        <div class="col l12 xl6">
-            <div class="card white">
-                <div class="card-content">
-                    <table>
-                        <tr>
-                            <th colspan="2"><span class="card-title">{{ 'cm.dashboard.summary'|trans }} <span class="right">{{ 'now'|date('M Y') }}</span></span></th>
-                        </tr>
-                        <tr>
-                            <th>{{ 'cm.invoice_paid'|trans }}</th><td>{{ sum.month.paid|number_format(2, '.', ' ') }} €</td>
-                        </tr>
-                        <tr>
-                            <th>{{ 'cm.invoice_not_paid'|trans }}</th><td>{{ sum.month.not_paid|number_format(2, '.', ' ') }} €</td>
-                        </tr>
-                        <tr>
-                            <th colspan="2"><span class="card-title">{{ 'cm.dashboard.summary'|trans }} <span class="right">{{ 'now'|date('Y') }}</span></span></th>
-                        </tr>
-                        <tr>
-                            <th>{{ 'cm.invoice_paid'|trans }}</th><td>{{ sum.year.paid|number_format(2, '.', ' ') }} €</td>
-                        </tr>
-                        <tr>
-                            <th>{{ 'cm.invoice_not_paid'|trans }}</th><td>{{ sum.year.not_paid|number_format(2, '.', ' ') }} €</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="card white">
-                <div class="card-content">
-                    <span class="card-title">{{ 'cm.history'|trans }}</span>
-                    <div id="summary-chart"></div>
-                </div>
-            </div>
-
-        </div>
     </div>
+
 
 {% endblock %}
 
-{% block javascripts %}
+{% block head_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+{% endblock %}
+
+{% block body_javascript %}
+    {{ parent() }}
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <script>
         {% spaceless %}
         var data = {

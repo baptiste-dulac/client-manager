@@ -89,6 +89,9 @@
             "ref": "c81bdcf4a9d4e7b1959071457f9608631865d381"
         }
     },
+    "luxifer/doctrine-functions": {
+        "version": "1.6.0"
+    },
     "monolog/monolog": {
         "version": "1.23.0"
     },

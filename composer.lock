@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c0f5bea215864f21aeb36c15e01a2e9c",
+    "content-hash": "8e870264f598b02c0871d55bb0125548",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1191,6 +1191,53 @@
                 "snappy"
             ],
             "time": "2017-12-06T16:31:47+00:00"
+        },
+        {
+            "name": "luxifer/doctrine-functions",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/luxifer/doctrine-functions.git",
+                "reference": "e1c0bb1a5cb002d9fc82d8b32a5da28c02d34c6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/luxifer/doctrine-functions/zipball/e1c0bb1a5cb002d9fc82d8b32a5da28c02d34c6c",
+                "reference": "e1c0bb1a5cb002d9fc82d8b32a5da28c02d34c6c",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": ">=2.2.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Luxifer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Florent Viel",
+                    "email": "luxifer666@gmail.com",
+                    "homepage": "http://blog.luxifer.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Doctrine DQL Functions for Mysql",
+            "homepage": "http://luxifer.github.io/doctrine-functions/",
+            "keywords": [
+                "database",
+                "dql",
+                "mysql"
+            ],
+            "time": "2017-12-21T14:04:35+00:00"
         },
         {
             "name": "monolog/monolog",

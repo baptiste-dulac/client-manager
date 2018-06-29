@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "easycorp/easyadmin-bundle": "^1.17",
         "knplabs/knp-snappy-bundle": "^1.4",
+        "luxifer/doctrine-functions": "^1.6",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/console": "^4.0",
         "symfony/dotenv": "^4.0",

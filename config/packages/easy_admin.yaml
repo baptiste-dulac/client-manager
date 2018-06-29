@@ -10,6 +10,14 @@ easy_admin:
             js:
                 - 'js/chartist.min.js'
         form_theme: "vertical"
+        menu:
+            - { label: 'Dashboard', route: 'admin_dashboard', default: true }
+            - label: 'Marketing'
+            - { label: 'Clients', entity: clients }
+            - { label: 'Projects', entity: projects}
+            - label: 'Billing'
+            - { label: 'Invoices', entity: invoices }
+            - { label: 'Quotes', entity: quotes}
     entities:
         clients:
             class: App\Entity\Client

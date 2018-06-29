@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DashboardController extends AdminController
 {
     /**
-     * @Route("/dashboard", name="homepage")
+     * @Route("/dashboard", name="admin_dashboard")
      */
     public function dashboardAction(
         ChartService $charts,

@@ -23,7 +23,7 @@
                 <td>{{ item.details|nl2br }}</td>
                 <td class="right">{{ item.amount|price }}</td>
                 <td class="right">{{ item.quantity }}</td>
-                <td class="right">{{ item.amount|price }}</td>
+                <td class="right">{{ item.total|price }}</td>
             </tr>
         {% endfor %}
         {% for discount in invoice.discounts %}
@@ -32,7 +32,7 @@
                 <td>{{ discount.details|nl2br }}</td>
                 <td class="right">- {{ discount.amount|price }}</td>
                 <td class="right">{{ discount.quantity }}</td>
-                <td class="right">- {{ discount.amount|price }}</td>
+                <td class="right">- {{ discount.total|price }}</td>
             </tr>
         {% endfor %}
         <tr>
@@ -40,4 +40,21 @@
             <td class="right"><strong>{{ amount|price }}</strong></td>
         </tr>
     </table>
+    <div class="divider"></div>
+    <hr>
+    <p>
+        Règlement par virement : <br/>
+        <strong>IBAN</strong> {{ bank.iban }}<br/>
+        <strong>BIC</strong> {{ bank.bic }}
+    </p>
+    <p>
+        <small>
+            La facture est payable sous 30 jours.<br/>
+            Tout règlement effectué après expiration du délai donnera lieu, à titre de pénalité de retard, à
+            l'application d'un intérêt égal à celui appliqué par la Banque Centrale Européenne à son opération de
+            refinancement la plus récente, majoré de 10 points de pourcentage, ainsi qu'à une indemnité forfaitaire
+            pour frais de recouvrement d'un montant de 40 Euros.<br/>
+            Les pénalités de retard sont exigibles sans qu'un rappel soit nécessaire.
+        </small>
+    </p>
 {% endblock %}

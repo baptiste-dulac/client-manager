@@ -2,3 +2,7 @@ twig:
     paths: ['%kernel.project_dir%/templates']
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+      bank:
+        iban: '%env(resolve:BANK_IBAN)%'
+        bic: '%env(resolve:BANK_BIC)%'

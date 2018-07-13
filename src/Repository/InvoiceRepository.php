@@ -15,7 +15,7 @@ class InvoiceRepository extends ServiceEntityRepository
         parent::__construct($registry, Invoice::class);
     }
 
-    public function findAmountGroupedByMonth(\DateTime $from, $paid = true)
+    public function findTotalGroupedByMonth(\DateTime $from, $paid = true)
     {
         return $this
             ->createQueryBuilder('o')
@@ -30,32 +30,54 @@ class InvoiceRepository extends ServiceEntityRepository
             ;
     }
 
-    public function findCurrentMonth($paid = true)
-    {
+    public function findTotalForMonths(array $months, $paid = true) {
         return $this
-            ->createQueryBuilder('o')
-            ->select('SUM(o.amount)')
-            ->where('CONCAT(MONTH(o.createdAt), \'-\', YEAR(o.createdAt)) = :month')
-            ->andWhere('o.paid = :paid')
-            ->setParameter('month', date('n-Y'))
-            ->setParameter('paid', $paid)
-            ->getQuery()
-            ->getSingleScalarResult()
-            ;
+                   ->createQueryBuilder('o')
+                   ->select('SUM(o.amount)')
+                   ->where('CONCAT(MONTH(o.createdAt), \'-\', YEAR(o.createdAt)) IN (:months)')
+                   ->andWhere('o.paid = :paid')
+                   ->setParameter('months', $months)
+                   ->setParameter('paid', $paid)
+                   ->getQuery()
+                   ->getSingleScalarResult()
+               ?? 0 ;
     }
 
-    public function findCurrentYear($paid = true)
+    public function findTotalForMonth(string $month, string $year, $paid = true): int
     {
         return $this
-            ->createQueryBuilder('o')
-            ->select('SUM(o.amount)')
-            ->where('YEAR(o.createdAt) = :month')
-            ->andWhere('o.paid = :paid')
-            ->setParameter('month', date('Y'))
-            ->setParameter('paid', $paid)
-            ->getQuery()
-            ->getSingleScalarResult()
-            ;
+                   ->createQueryBuilder('o')
+                   ->select('SUM(o.amount)')
+                   ->where('CONCAT(MONTH(o.createdAt), \'-\', YEAR(o.createdAt)) = :date')
+                   ->andWhere('o.paid = :paid')
+                   ->setParameter('date', sprintf('%s-%s', $month, $year))
+                   ->setParameter('paid', $paid)
+                   ->getQuery()
+                   ->getSingleScalarResult()
+               ?? 0 ;
+    }
+
+    public function findTotalForCurrentMonth($paid = true): int
+    {
+        return $this->findTotalForMonth(date('n'), date('Y'), $paid);
+    }
+
+    public function findTotalForYear(string $year, $paid = true): int {
+        return $this
+                   ->createQueryBuilder('o')
+                   ->select('SUM(o.amount)')
+                   ->where('YEAR(o.createdAt) = :year')
+                   ->andWhere('o.paid = :paid')
+                   ->setParameter('year', $year)
+                   ->setParameter('paid', $paid)
+                   ->getQuery()
+                   ->getSingleScalarResult()
+               ?? 0 ;
+    }
+
+    public function findTotalForCurrentYear($paid = true): int
+    {
+        return $this->findTotalForYear(date('Y'), $paid);
     }
 
     public function existsWithCodeEndingBy(string $endBy): bool

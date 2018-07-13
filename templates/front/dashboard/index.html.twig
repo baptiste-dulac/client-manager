@@ -21,7 +21,7 @@
                         </div>
                         <table class="table table-bordered table-condensed">
                             <tr>
-                                <th colspan="2">{{ 'now'|date('M Y') }}</th>
+                                <th colspan="2" class="text-center">{{ 'now'|date('M Y') }}</th>
                             </tr>
                             <tr>
                                 <td>Payée</td><td>{{ sum.month.paid|price }}</td>
@@ -29,14 +29,55 @@
                             <tr>
                                 <td>En attente</td><td>{{ sum.month.not_paid|price }}</td>
                             </tr>
+                        </table>
+                        <table class="table table-bordered table-condensed">
                             <tr>
-                                <th colspan="2">{{ 'now'|date('Y') }}</th>
+                                <th></th>
+                                <th colspan="4" class="text-center">{{ ('now'|date('Y')) - 1 }}</th>
+                                <th colspan="4" class="text-center">{{ 'now'|date('Y') }}</th>
                             </tr>
                             <tr>
-                                <td>Payée</td><td>{{ sum.year.paid|price }}</td>
+                                <td>Payée</td>
+                                <td colspan="4" class="text-center">{{ sum.prv_year.paid|price }}</td>
+                                <td colspan="4" class="text-center">{{ sum.year.paid|price }}</td>
                             </tr>
                             <tr>
-                                <td>En attente</td><td>{{ sum.year.not_paid|price }}</td>
+                                <td>En attente</td>
+                                <td colspan="4" class="text-center">{{ sum.prv_year.not_paid|price }}</td>
+                                <td colspan="4" class="text-center">{{ sum.year.not_paid|price }}</td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th class="text-center">Q1</th>
+                                <th class="text-center">Q2</th>
+                                <th class="text-center">Q3</th>
+                                <th class="text-center">Q4</th>
+                                <th class="text-center">Q1</th>
+                                <th class="text-center">Q2</th>
+                                <th class="text-center">Q3</th>
+                                <th class="text-center">Q4</th>
+                            </tr>
+                            <tr>
+                                <td>Payée</td>
+                                <td class="text-center">{{ sum.prv_year.q1.paid|price }}</td>
+                                <td class="text-center">{{ sum.prv_year.q2.paid|price }}</td>
+                                <td class="text-center">{{ sum.prv_year.q3.paid|price }}</td>
+                                <td class="text-center">{{ sum.prv_year.q4.paid|price }}</td>
+                                <td class="text-center">{{ sum.year.q1.paid|price }}</td>
+                                <td class="text-center">{{ sum.year.q2.paid|price }}</td>
+                                <td class="text-center">{{ sum.year.q3.paid|price }}</td>
+                                <td class="text-center">{{ sum.year.q4.paid|price }}</td>
+                            </tr>
+                            <tr>
+                                <td>En attente</td>
+                                <td class="text-center">{{ sum.prv_year.q1.not_paid|price }}</td>
+                                <td class="text-center">{{ sum.prv_year.q2.not_paid|price }}</td>
+                                <td class="text-center">{{ sum.prv_year.q3.not_paid|price }}</td>
+                                <td class="text-center">{{ sum.prv_year.q4.not_paid|price }}</td>
+                                <td class="text-center">{{ sum.year.q1.not_paid|price }}</td>
+                                <td class="text-center">{{ sum.year.q2.not_paid|price }}</td>
+                                <td class="text-center">{{ sum.year.q3.not_paid|price }}</td>
+                                <td class="text-center">{{ sum.year.q4.not_paid|price }}</td>
                             </tr>
                         </table>
                     </div>

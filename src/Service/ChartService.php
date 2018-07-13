@@ -31,8 +31,8 @@ class ChartService
         ];
         $history = 12;
         $from = \DateTime::createFromFormat('U', mktime(null, null, null, date('m') - 12));
-        $invoicePaid = $this->formatResults($this->invoices->findAmountGroupedByMonth($from, true));
-        $invoiceNotPaid = $this->formatResults($this->invoices->findAmountGroupedByMonth($from, false));
+        $invoicePaid = $this->formatResults($this->invoices->findTotalGroupedByMonth($from, true));
+        $invoiceNotPaid = $this->formatResults($this->invoices->findTotalGroupedByMonth($from, false));
 
         for ($i = $history; $i >= 0; --$i)
         {

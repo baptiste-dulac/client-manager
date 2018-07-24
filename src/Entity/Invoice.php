@@ -63,7 +63,6 @@ class Invoice extends DiscountList implements HasAmount
     protected $company;
 
     /**
-     * @Assert\NotNull()
      * @ORM\ManyToOne(targetEntity="App\Entity\Quote")
      */
     protected $quote;

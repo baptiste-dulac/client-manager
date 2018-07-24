@@ -50,7 +50,7 @@ easy_admin:
                     - createdAt
                     - client
                     - project
-                    - quote
+                    - { property: "quote", type_options: { required: false } }
             form:
                 fields:
                     - { type: "group", css_class: "col-sm-12 col-md-4", label: "Basic information" }

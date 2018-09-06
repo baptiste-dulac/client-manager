@@ -6,3 +6,4 @@ twig:
       bank:
         iban: '%env(resolve:BANK_IBAN)%'
         bic: '%env(resolve:BANK_BIC)%'
+        name: '%env(resolve:BANK_NAME)%'

@@ -35,6 +35,8 @@ class InvoiceController extends AdminController
         $knp->setOption('footer-html', $footer);
         $knp->setOption('header-html', $header);
 
+        $knp->setTimeout(300);
+
         $filename = sprintf('%s_%s.pdf', $invoice->code(), $invoice->client()->name());
 
         return new Response(

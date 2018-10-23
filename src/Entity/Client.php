@@ -40,7 +40,6 @@ class Client
 
     /**
      * @ORM\Column(name="vat_number", length=30, nullable=true)
-     * @Assert\NotBlank()
      */
     protected $vatNumber;
 

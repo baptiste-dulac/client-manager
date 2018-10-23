@@ -13,6 +13,7 @@ easy_admin:
         menu:
             - { label: 'Dashboard', route: 'admin_dashboard', default: true }
             - label: 'Marketing'
+            - { label: 'Companies', entity: companies }
             - { label: 'Clients', entity: clients }
             - { label: 'Projects', entity: projects}
             - label: 'Billing'

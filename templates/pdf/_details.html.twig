@@ -2,8 +2,7 @@
 <p>
     {{ details.addressLine1 }}<br/>
     {% if details.addressLine2 %}{{ details.addressLine2 }}<br/>{% endif %}
-    {{ details.zipCode }} {{ details.city }}
-</p>
-<p>
-    SIRET : {{ details.registrationNumber }}
+    {{ details.zipCode }} {{ details.city }}<br/>
+    {% if details.vatNumber %}<strong>TVA</strong> {{ details.vatNumber }}<br/>{% endif %}
+    <strong>SIRET</strong> {{ details.registrationNumber }}
 </p>
